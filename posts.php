@@ -26,7 +26,7 @@ if(isset($_POST['post'])) {
 <!DOCTYPE html>
 <html>
   <head>
-    <title>title</title>
+    <title>Post</title>
   </head>
   <body>
       <form action="posts.php" method="POST" enctype="multipart/form-data">

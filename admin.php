@@ -28,7 +28,7 @@ if(!isset($_SESSION['admin'])&& $_SESSION['admin']!=1){
             $id =$row['id'];
             $title =$row['title'];
             $date =$row['date'];
-            
+            $content = $row['content'];
             $admin = "<div><a href='del_post.php?pid=$id'>Delete</a>;<a href='edit_posts.php?pid=$id'>Edit</a></div>";
             
             $output = $bbcode->Parse($content);

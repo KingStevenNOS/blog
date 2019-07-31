@@ -3,7 +3,7 @@
     include_once("db.php");
 
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -14,8 +14,9 @@
     <?php
     require_once("nbbc/nbbc.php");
     $bbcode=new BBCode;
-    $sql="SELECT * FROM posts ORDER BY id DESC";
-    $res = mysqli_query($db,$sql) or die(mysqli_error());
+    $pid=$_GET['pid'];
+    $sql="SELECT * FROM posts WHERE id = $pid";
+    $res = mysqli_query($db,$sql) or die(mysqli_error($db));
     $posts = "";
     
     if(mysqli_num_rows($res)>0){
