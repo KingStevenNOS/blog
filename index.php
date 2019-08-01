@@ -14,33 +14,6 @@
 <body>
     <div>
         <?php
-        if (isset($_GET['pageno'])) {
-            $pageno = $_GET['pageno'];
-        } else {
-            $pageno = 1;
-        }
-        $no_of_records_per_page = 4;
-        $offset = ($pageno - 1) * $no_of_records_per_page;
-
-        $total_pages_sql = "SELECT COUNT(*) FROM posts";
-        $pages_data = mysqli_query($db,$total_pages_sql);
-        $rows_fetched = mysqli_fetch_array($pages_data)[0];
-        $total_pages = ceil($rows_fetched / $no_of_records_per_page);
-        ?>
-        <ul class="pagination">
-            <li><a href="?pageno=1">First</a></li>
-            <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-                <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
-            </li>
-            <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-                <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
-            </li>
-            <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-        </ul>
-    </div>
-        
-    <div>
-        <?php
         require_once("nbbc/nbbc.php");
         $bbcode=new BBCode;
 
@@ -79,6 +52,12 @@
             echo "<a href='logout.php'>Logout</a>";
         }
         ?>
+        <div class="pagination">
+            <a href="?pageno=1">First</a> ||
+            <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a> ||
+            <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a> ||
+            <a href="?pageno=<?php echo $total_pages; ?>">Last</a>
+        </div>
             
     </div>
     

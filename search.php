@@ -27,24 +27,15 @@
         $rows_fetched = mysqli_fetch_array($pages_data)[0];
         $total_pages = ceil($rows_fetched / $no_of_records_per_page);
         ?>
-        <ul class="pagination">
-            <li><a href="?pageno=1">First</a></li>
-            <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-                <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
-            </li>
-            <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-                <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
-            </li>
-            <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-        </ul>
+        
     </div>
     <div>
         <?php
         require_once("nbbc/nbbc.php");
         $bbcode=new BBCode;
-        if (isset($_GET["search"]) && strlen($_GET["search"]) >= 0) {
+        if (isset($_GET["search"]) && strlen($_GET["search"]) > 0) {
             $search = $_GET["search"];
-            $sql="SELECT * FROM posts WHERE title LIKE '%$search%' ORDER BY id DESC LIMIT $offset, $no_of_records_per_page";
+            $sql="SELECT * FROM posts WHERE title LIKE '%$search%' ORDER BY id DESC";
             $res = mysqli_query($db, $sql) or die(mysqli_error($db));
             $posts = "";
             if(mysqli_num_rows($res)>0){
@@ -61,8 +52,13 @@
             }else{
                 echo "There are no results<br/>";
             }
+        }
+        else if(isset($_GET['search']) && strlen($_GET['search']) == 0){
+            echo "Search cannot be empty<br/> <a href ='index.php'>return</a>";
+            return;
+        
         }else{
-            $sql = "SELECT * FROM posts ORDER BY id DESC LIMIT 4";
+            $sql = "SELECT * FROM posts ORDER BY id DESC LIMIT $offset, $no_of_records_per_page";
             $res = mysqli_query($db, $sql) or die(mysqli_error($db));
             $posts = "";
         }
