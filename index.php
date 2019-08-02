@@ -9,6 +9,8 @@
 
 <head>
     <title>Blog</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
 </head>
 
 <body>
@@ -41,15 +43,15 @@
     <div>
         <?php
         if (isset($_SESSION['admin']) && $_SESSION['admin']==1){
-            echo "<a href='admin.php'>Admin</a> | <a href='posts.php'>Post</a> | <a href='logout.php'>Logout</a>";
+            echo "<a href='admin.php' class='button big'>Admin</a> | <a href='posts.php' class='button big'>Post</a> | <a href='logout.php' class='button big'>Logout</a>";
         }
         if (!isset($_SESSION['username'])){
-            echo "<a href='login.php'>Login</a><br/>";
-            echo "<a href='register.php'>Register</a><br/>";
+            echo "<a href='login.php' class='button big'>Login</a><br/>";
+            echo "<a href='register.php' class='button big'>Register</a><br/>";
 
         }
         if (isset($_SESSION['username']) && !isset($_SESSION['admin'])){
-            echo "<a href='logout.php'>Logout</a>";
+            echo "<a href='logout.php' class='button big'>Logout</a>";
         }
         ?>
         <div class="pagination">

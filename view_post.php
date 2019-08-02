@@ -8,6 +8,8 @@
 
 <head>
     <title>Blog</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
 </head>
 
 <body>
